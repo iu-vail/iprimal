@@ -1,0 +1,64 @@
+#
+# PLEASE READ THIS FILE FIRST.
+#
+# This is the improved version of primal assignment algorithm written in C++
+# (using STL as main data structures). The algorithm assumes the input a 
+# MINIMIZATION problem.
+# It is a centralized version of an optimal assignment algorithm based on
+# our paper "A Distributable and Computation-Flexible Assignment Algorithm: From Local Task Swapping to Global Optimality. Lantao Liu, Dylan Shell" published in RSS 2012. 
+# 
+# The time complexity of this implementation is O(N^3 lg N). 
+#
+# Nov, 2011.
+
+# Last update: on 6/2018
+# The code was written a few years ago, but still compiled and worked like a charm on the latest linux system.
+# Papers and related work can be found at http://vail.sice.indiana.edu
+# Lantao Liu, <lantao@iu.edu>
+
+
+# -----------------------------------------------
+
+# The code has been tested in Ubuntu 9.04+ and Mac OS 10.5., with gcc4.3.3.
+
+To compile, just type 'make'
+To clean, just type 'make clean'
+
+! Micros of DEBUG in Define.h can toggle the debug mode
+    a debug mode outputs many details that allow one to track how the algorithm actually proceeds, by default the debug mode is off;
+
+! Micros of USE_HEAP in Define.h can toggle the usage of min-heaps 
+    by default the algo uses heaps, which is the data structure that enables O(n^3 lg n) time complexity;
+
+Command Line:
+Type "./primal -h" to prompt below usage options.
+
+	./primal
+		-i <file>       #specify <file> which assignment will be 
+				#imported from. <file> contains a matrix.
+				#Default: randomly generating assingment
+		-s <size_t>     #use random generator instead of input file,
+				#<size_t> should specify seed for generator,
+				#this helps analyze one specific assignment
+				#Default: time(Null)
+		-n <size_t>	#if use random generator, tell me the size
+				#Default: 5x5
+		-o <file>       #specify <file> for writing results.
+				#Default: output.txt
+
+				#The random generater by default can genenerate
+				#natrual number from 0 to 10^2. You can grep and
+				#change macro MAX_RANDOM for other values
+				
+
+For instance:
+	./primal
+		run primal with a 5x5 random assignment everytime.
+	./primal -i example
+		run primal on this example assignment
+	./primal -s 10 
+		run Hungrian with random seed 10, on a default 5x5 assignment
+	./primal -s 10 -n 20
+		run primal with random seed 10, on a 20x20 assignment
+	
+
